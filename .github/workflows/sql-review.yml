@@ -10,7 +10,7 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     container:
-      image: bytebase/bytebase-action
+      image: bytebase/bytebase-action:3.19.1
     env:
       BYTEBASE_URL: https://9bce-2407-cdc0-b027-00-218.ngrok-free.app
       BYTEBASE_WORKLOAD_IDENTITY: gh@sdl-pl5l.workload.bytebase.com
