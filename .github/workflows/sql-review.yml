@@ -2,7 +2,7 @@ name: SQL Review
 on:
   pull_request:
     branches: ["main"]
-    paths: ["migrations/*.sql"]
+    paths: ["schema/**"]
 jobs:
   sql-review:
     permissions:
@@ -35,4 +35,5 @@ jobs:
             --access-token=${{ steps.bytebase-auth.outputs.access-token }} \
             --project=projects/sdl-pl5l \
             --targets=instances/mysql8-docker/databases/gitopssdl \
-            --file-pattern=migrations/*.sql
+            --file-pattern="schema/**/*.sql" \
+            --declarative

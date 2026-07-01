@@ -2,7 +2,7 @@ name: Rollout
 on:
   push:
     branches: ["main"]
-    paths: ["migrations/*.sql"]
+    paths: ["schema/**"]
 env:
   BYTEBASE_URL: https://9bce-2407-cdc0-b027-00-218.ngrok-free.app
   BYTEBASE_WORKLOAD_IDENTITY: gh@sdl-pl5l.workload.bytebase.com
@@ -42,7 +42,8 @@ jobs:
             --access-token=${{ steps.bytebase-auth.outputs.access-token }} \
             --project=$BYTEBASE_PROJECT \
             --targets=instances/mysql8-docker/databases/gitopssdl \
-            --file-pattern=migrations/*.sql \
+            --file-pattern="schema/**/*.sql" \
+            --declarative \
             --output=${{ runner.temp }}/bytebase-metadata.json
       - name: Set output
         id: set-output
